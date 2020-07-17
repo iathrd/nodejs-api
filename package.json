@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IqbalAthoridd/nodejs-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IqbalAthoridd/nodejs-api/issues"
+  },
+  "homepage": "https://github.com/IqbalAthoridd/nodejs-api#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http-errors": "^1.8.0",
+    "mongoose": "^5.9.24",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.4"
+  }
+}
