@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const mongoOption = {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
 }
 
 mongoose

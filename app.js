@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const createError = require('http-errors');
+const bodyParser = require('body-parser')
 require('dotenv').config();
 require('./helpers/init_mongodb')
 
@@ -9,12 +10,16 @@ const authRoute = require('./routes/Auth.route')
 const app = express();
 app.use(morgan('dev'))
 
-app.get('/', async (req, res, next) => {
-    res.send("Hallo from express")
-})
+//BodyParser
+app.use(bodyParser.urlencoded({
+    extended: true,
+}))
+app.use(bodyParser.json())
 
+//Route
 app.use('/auth', authRoute);
 
+//Error handler http request
 app.use(async (req, res, next) => {
     next(createError.NotFound())
 });
@@ -29,6 +34,7 @@ app.use((err, req, res, next) => {
     })
 })
 
+//SERVER 
 const PORT = process.env.PORT || 3000
 
 app.listen(PORT, () => {
