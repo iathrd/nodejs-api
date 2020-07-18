@@ -4,9 +4,13 @@ const createError = require('http-errors');
 const bodyParser = require('body-parser')
 require('dotenv').config();
 require('./helpers/init_mongodb')
-const { verifyAccessToken } = require('./helpers/jwt_helper')
+const {
+    verifyAccessToken
+} = require('./helpers/jwt_helper')
+require('./helpers/init_redis')
 
 const authRoute = require('./routes/Auth.route')
+const produkRoute = require('./routes/Produk.route')
 
 const app = express();
 app.use(morgan('dev'))
@@ -18,10 +22,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 
 //Route
-app.get('/', verifyAccessToken, (req, res) => {
-    res.send("Halo from express")
-})
 app.use('/auth', authRoute);
+app.use('/produk', verifyAccessToken, produkRoute)
 
 //Error handler http request
 app.use(async (req, res, next) => {
