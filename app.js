@@ -4,6 +4,7 @@ const createError = require('http-errors');
 const bodyParser = require('body-parser')
 require('dotenv').config();
 require('./helpers/init_mongodb')
+const { verifyAccessToken } = require('./helpers/jwt_helper')
 
 const authRoute = require('./routes/Auth.route')
 
@@ -17,6 +18,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 
 //Route
+app.get('/', verifyAccessToken, (req, res) => {
+    res.send("Halo from express")
+})
 app.use('/auth', authRoute);
 
 //Error handler http request
